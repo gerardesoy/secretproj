@@ -114,7 +114,36 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
+            
+    /* CUSTOM SCROLLBAR */
+    /* Width */
+    ::-webkit-scrollbar {
+        width: 12px !important;
+        height: 12px !important;
+    }
+    
+    /* Track (Background) */
+    ::-webkit-scrollbar-track {
+        background: #ffe6eb !important; 
+        border-radius: 10px !important;
+    }
+    
+    /* Handle (The moving part) */
+    ::-webkit-scrollbar-thumb {
+        background: #ff4b8b !important; 
+        border-radius: 10px !important;
+        border: 2px solid #ffe6eb !important; /* Makes it look rounded */
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #d63384 !important; 
+    }
+
+
 </style>
+            
+
 """, unsafe_allow_html=True)
 
 # --- STATE MANAGEMENT ---
