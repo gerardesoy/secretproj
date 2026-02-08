@@ -36,7 +36,6 @@ st.markdown("""
         border-left: 5px solid #ff4b8b !important;
         border-right: 5px solid #ff4b8b !important;
         position: relative !important;
-        background-color: #fff5f8;
     }
     
     @media (max-width: 600px) {
@@ -116,23 +115,9 @@ st.markdown("""
     footer {visibility: hidden;}
     header {visibility: hidden;}
             
-    /* BOUNCING ARROW ANIMATION */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-
-        .scroll-down {
-            text-align: center;
-            font-size: 30px;
-            color: #ff4b8b;
-            animation: bounce 2s infinite;
-            margin-top: 20px;
-            opacity: 0.7;
-        }
-
 </style>
+            
+
 """, unsafe_allow_html=True)
 
 # --- STATE MANAGEMENT ---
@@ -179,6 +164,7 @@ with placeholder.container():
         if st.button("...", use_container_width=True):
             next_page()
 
+
     # --- SLIDE 3
     elif st.session_state.page == 3:
         st.write("## okay so ...")
@@ -196,7 +182,7 @@ with placeholder.container():
         
         lines = [
             "I realized we have been talking for a while now and I really enjoy our conversations 😊",
-            "and I have been thinking...",
+            "and I have been thinking..."
             "...",
             "..."
         ]
@@ -208,8 +194,15 @@ with placeholder.container():
                 text_spot = st.empty()
                 displayed_text = ""
                 
-                # Simplified typing loop for stability
+                for line in lines:
+                    displayed_text += line + "\n\n"
+                    current_text = ""
+                    for char in line:
+                        current_text += char
+                        pass
+
                 displayed_lines = [] 
+                
                 for line in lines:
                     displayed_lines.append("") 
                     for char in line:
@@ -217,15 +210,13 @@ with placeholder.container():
                         formatted_text = "\n\n".join([f"### {l}" for l in displayed_lines])
                         text_spot.markdown(f"{formatted_text}▌")
                         time.sleep(0.05)
+                    
                     time.sleep(0.2)
                 
                 st.session_state.slide5_done = True
 
                 formatted_text = "\n\n".join([f"### {l}" for l in lines])
                 text_spot.markdown(formatted_text)
-                
-                # --- ARROW ADDED HERE ---
-                st.markdown('<div class="scroll-down">⬇️</div>', unsafe_allow_html=True)
                 
                 col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
                 with col3:
@@ -236,12 +227,13 @@ with placeholder.container():
                 if st.button("...", use_container_width=True):
                     next_page()
 
+
+
         else:
+
             formatted_text = "\n\n".join([f"### {l}" for l in lines])
             st.markdown(formatted_text)
             
-            # --- ARROW ADDED HERE ---
-            st.markdown('<div class="scroll-down">⬇️</div>', unsafe_allow_html=True)
 
             st.write("") 
             if st.button("...", use_container_width=True):
@@ -267,22 +259,16 @@ with placeholder.container():
             with placeholder.container():
                 text_spot = st.empty()
                 displayed_text = ""
-                
-                displayed_lines = []
                 for line in lines:
-                    displayed_lines.append("")
                     for char in line:
-                        displayed_lines[-1] += char
-                        formatted_text = "\n\n".join([f"### {l}" for l in displayed_lines])
-                        text_spot.markdown(f"{formatted_text}▌")
+                        displayed_text += char
+                        text_spot.markdown(f"### {displayed_text}▌")
                         time.sleep(0.04)
+                    displayed_text += "\n\n"
                     time.sleep(0.3)
                 
                 st.session_state.slide6_done = True
                 text_spot.markdown(f"### {displayed_text}")
-                
-                # --- ARROW ADDED HERE ---
-                st.markdown('<div class="scroll-down">⬇️</div>', unsafe_allow_html=True)
 
                 st.write("") 
                 if st.button(":0", use_container_width=True):
@@ -291,9 +277,6 @@ with placeholder.container():
         else:
             full_text = "\n\n".join(lines)
             st.markdown(f"### {full_text}")
-            
-            # --- ARROW ADDED HERE ---
-            st.markdown('<div class="scroll-down">⬇️</div>', unsafe_allow_html=True)
 
             col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
             with col3:
@@ -368,7 +351,7 @@ with placeholder.container():
         with col3:
             st.image("nailong-dancing.gif", use_container_width=True)
             pass
-        
+
         st.balloons()
         st.write("")
         st.info("ℹ️ **System Notice:**\n\nMore details will be talked about :>")
