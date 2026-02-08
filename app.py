@@ -110,7 +110,7 @@ with placeholder.container():
         
         # st.image("nailong0.png") 
         
-        if st.button("Open Message 📂", key="btn_open"):
+        if st.button("Open Message 📂", use_container_width=True):
             next_page()
 
     # --- SLIDE 2: HEHE ---
@@ -267,3 +267,4 @@ with placeholder.container():
         
         st.write("I'll pick you up after your class. Don't be late! 😉")
         st.success("Date confirmed: Thursday, Feb 12")
+
