@@ -348,3 +348,10 @@ with placeholder.container():
         with col3:
             st.image("nailong-dancing.gif", use_container_width=True)
             pass
+
+        st.balloons()
+        
+        st.success("Mission Success! 🦖")
+        
+        st.write("")
+        st.info("ℹ️ **System Notice:**\n\nMore details will be talked about :>")
