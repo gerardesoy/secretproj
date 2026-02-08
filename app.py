@@ -158,14 +158,11 @@ with placeholder.container():
             st.image("nailong1.png", use_container_width=True)
             pass
             
-        if st.button("huh", use_container_width=True):
-            next_page()
         if st.button("what?", use_container_width=True):
             next_page()
-        if st.button("???", use_container_width=True):
+        if st.button("...", use_container_width=True):
             next_page()
-        if st.button("nani?", use_container_width=True):
-            next_page()
+
 
     # --- SLIDE 3: OKAY SO ---
     elif st.session_state.page == 3:
@@ -178,18 +175,12 @@ with placeholder.container():
 
         if st.button("...", use_container_width=True):
             next_page()
-        if st.button("?", use_container_width=True):
-            next_page()
-        if st.button("🤔", use_container_width=True):
-            next_page()
-        if st.button("regine velasquez", use_container_width=True):
-            next_page()
 
     # --- SLIDE 4: REALIZATION (Typing) ---
     elif st.session_state.page == 4:
         
         lines = [
-            "I realized we have been talking for a while now and I really enjoy our conversations. 😊",
+            "I realized we have been talking for a while now and I really enjoy our conversations 😊",
             "and I have been thinking..."
             "...",
             "..."
@@ -227,9 +218,16 @@ with placeholder.container():
                 formatted_text = "\n\n".join([f"### {l}" for l in lines])
                 text_spot.markdown(formatted_text)
                 
+                col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
+                with col3:
+                    st.image("nailong-writing.gif", use_container_width=True)
+                    pass
+
                 st.write("") 
                 if st.button("...", use_container_width=True):
                     next_page()
+
+
 
         else:
             # STATIC VIEW (If already done)
@@ -237,10 +235,9 @@ with placeholder.container():
             formatted_text = "\n\n".join([f"### {l}" for l in lines])
             st.markdown(formatted_text)
             
+
             st.write("") 
-            if st.button("what?", use_container_width=True):
-                    next_page()
-            if st.button("???", use_container_width=True):
+            if st.button("...", use_container_width=True):
                     next_page()
 
     # --- SLIDE 5: THE PLAN (Typing) ---
@@ -302,7 +299,7 @@ with placeholder.container():
         st.markdown('<div class="no-animate">', unsafe_allow_html=True)
         
         st.write("# So...")
-        st.write("## Will you be my Valentine? 🌹")
+        st.write("## May I be your Valentine? 🌹")
         
         # st.image("nailong3.png")
         
@@ -310,15 +307,15 @@ with placeholder.container():
         no_text = "No"
         
         if st.session_state.no_count == 1:
-            no_text = "Are you sure? 😢"
+            no_text = "Are you sure?"
         elif st.session_state.no_count == 2:
-            no_text = "Are you really sure?... 🥺"
+            no_text = "Are you really sure?"
         elif st.session_state.no_count == 3:
             no_text = "Are you really reallllyyy sure?"
         elif st.session_state.no_count == 4:
-            no_text = "okay :<<<<< ..."
+            no_text = "sure na talaga?"
         elif st.session_state.no_count == 5:
-            no_text = "ayaw talaga? 😢"
+            no_text = "sure na sure na ba talaga?"
         elif st.session_state.no_count == 6:
             no_text = "grabe pipindut lagihap an no"
         elif st.session_state.no_count == 7:
@@ -348,7 +345,7 @@ with placeholder.container():
                 if st.button(no_text, key="no_btn", use_container_width=True):
                     click_no()
         else:
-            st.write("okay tama na sa pagiging over")
+            st.write("okay, tama na sa pagiging over")
             if st.button("YES!", use_container_width=True):
                 next_page()
         
@@ -357,5 +354,12 @@ with placeholder.container():
     # --- SLIDE 7: SUCCESS ---
     elif st.session_state.page == 7:
         st.write("# YAY!")
+
+        col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
+        with col3:
+            st.image("nailong-dancing.gif", use_container_width=True)
+            pass
+
+
         
     
