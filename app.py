@@ -136,7 +136,7 @@ placeholder = st.empty()
 
 with placeholder.container():
 
-    # --- SLIDE 1: HOOK ---
+    # --- SLIDE 1
     if st.session_state.page == 1:
         st.write("## 💌 You have a new message!")
         st.write("Someone sent you a very important delivery...")
@@ -158,13 +158,11 @@ with placeholder.container():
             st.image("nailong1.png", use_container_width=True)
             pass
             
-        if st.button("what?", use_container_width=True):
-            next_page()
         if st.button("...", use_container_width=True):
             next_page()
 
 
-    # --- SLIDE 3: OKAY SO ---
+    # --- SLIDE 3
     elif st.session_state.page == 3:
         st.write("## okay so ...")
         
@@ -176,7 +174,7 @@ with placeholder.container():
         if st.button("...", use_container_width=True):
             next_page()
 
-    # --- SLIDE 4: REALIZATION (Typing) ---
+    # --- SLIDE 4
     elif st.session_state.page == 4:
         
         lines = [
@@ -186,7 +184,6 @@ with placeholder.container():
             "..."
         ]
         
-        # CLEAR PLACEHOLDER FIRST
         if 'slide5_done' not in st.session_state:
             placeholder.empty()
             time.sleep(0.1)
@@ -230,8 +227,7 @@ with placeholder.container():
 
 
         else:
-            # STATIC VIEW (If already done)
-            # Apply ### to every line here too
+
             formatted_text = "\n\n".join([f"### {l}" for l in lines])
             st.markdown(formatted_text)
             
@@ -240,7 +236,7 @@ with placeholder.container():
             if st.button("...", use_container_width=True):
                     next_page()
 
-    # --- SLIDE 5: THE PLAN (Typing) ---
+    # --- SLIDE 5
     elif st.session_state.page == 5:
         
         lines = [
@@ -254,10 +250,9 @@ with placeholder.container():
             "I have something I want to give you in person.",
         ]
 
-        # CLEAR PLACEHOLDER FIRST before animation
         if 'slide6_done' not in st.session_state:
             placeholder.empty()
-            time.sleep(0.1)  # Small delay to ensure clean slate
+            time.sleep(0.1) 
             with placeholder.container():
                 text_spot = st.empty()
                 displayed_text = ""
@@ -276,13 +271,10 @@ with placeholder.container():
                 if st.button(":0", use_container_width=True):
                     next_page()
 
-
-                # st.image("nailong2.png", use_container_width=True)
         else:
             full_text = "\n\n".join(lines)
             st.markdown(f"### {full_text}")
-            
-            # st.image("nailong2.png", use_container_width=True)
+
             col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
             with col3:
                 st.image("nailong-heart.gif", use_container_width=True)
@@ -293,15 +285,12 @@ with placeholder.container():
             if st.button("okayyy", use_container_width=True):
                 next_page()
 
-    # --- SLIDE 6: THE ASK ---
+    # --- SLIDE 6
     elif st.session_state.page == 6:
-        # Always wrap in no-animate div to prevent re-animation on any rerun
+
         st.markdown('<div class="no-animate">', unsafe_allow_html=True)
-        
         st.write("# So...")
         st.write("## May I be your Valentine? 🌹")
-        
-        # st.image("nailong3.png")
         
         yes_text = "YES! 💖"
         no_text = "No"
@@ -351,7 +340,7 @@ with placeholder.container():
         
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # --- SLIDE 7: SUCCESS ---
+    # --- SLIDE 7
     elif st.session_state.page == 7:
         st.write("# YAY!")
 
@@ -359,7 +348,3 @@ with placeholder.container():
         with col3:
             st.image("nailong-dancing.gif", use_container_width=True)
             pass
-
-
-        
-    
