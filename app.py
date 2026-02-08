@@ -121,20 +121,6 @@ with placeholder.container():
         if st.button("what?", use_container_width=True):
             next_page()
 
-    # --- SLIDE 4: NERVOUS BUFFER ---
-    elif st.session_state.page == 4:
-        st.write("## Actually wait...")
-        st.write("I'm kinda nervous to say this. 🙈")
-        
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            # st.image("nailong1.png", use_container_width=True)
-            pass
-        
-        st.write("")
-        if st.button("It's okay, tell me...", use_container_width=True):
-            next_page()
-
     # --- SLIDE 5: REALIZATION (Typing) ---
     elif st.session_state.page == 5:
         
@@ -243,3 +229,4 @@ with placeholder.container():
         
         st.write("I'll pick you up after your class. Don't be late! 😉")
         st.success("Date confirmed: Thursday, Feb 12")
+
