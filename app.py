@@ -26,19 +26,6 @@ st.markdown("""
         background-size: 20px 20px;
     }
     
-    /* Center all content */
-    .main .block-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-    
-    .main {
-        display: flex;
-        justify-content: center;
-    }
-    
     h1, h2, h3, p, div, span {
         font-family: 'Patrick Hand', cursive !important;
         color: #880d1e;
@@ -50,18 +37,7 @@ st.markdown("""
     p { font-size: 1.5rem !important; }
     
     /* BUTTON STYLING */
-    div[data-testid="stHorizontalBlock"] {
-        gap: 1rem;
-    }
-    
-    .stButton {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-    }
-    
-    .stButton > button {
+    .stButton>button {
         background-color: #ff4b8b !important;
         color: white !important;
         border-radius: 25px !important;
@@ -69,10 +45,7 @@ st.markdown("""
         padding: 15px 32px !important;
         font-size: 20px !important;
         box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-        width: 100% !important;
-        max-width: 400px !important;
-        margin: 0 auto !important;
-        display: block !important;
+        width: 100%;
         transition: transform 0.3s ease, background-color 0.3s ease; 
         animation: fadeIn 2s ease-in-out;
     }
@@ -80,18 +53,6 @@ st.markdown("""
     .stButton>button:hover {
         transform: scale(1.05);
         background-color: #ff1f6d !important;
-    }
-    
-    /* Center columns */
-    [data-testid="column"] {
-        display: flex !important;
-        flex-direction: column !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-    
-    [data-testid="stVerticalBlock"] > [data-testid="element-container"] {
-        width: 100%;
     }
     
     img {
@@ -149,10 +110,8 @@ with placeholder.container():
         
         # st.image("nailong0.png") 
         
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            if st.button("Open Message 📂", key="btn_open"):
-                next_page()
+        if st.button("Open Message 📂", key="btn_open"):
+            next_page()
 
     # --- SLIDE 2: HEHE ---
     elif st.session_state.page == 2:
@@ -160,8 +119,10 @@ with placeholder.container():
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            if st.button("?", key="btn_hehe"):
-                next_page()
+            pass
+            
+        if st.button("?", key="btn_hehe"):
+            next_page()
 
     # --- SLIDE 3: OKAY SO ---
     elif st.session_state.page == 3:
@@ -169,8 +130,10 @@ with placeholder.container():
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            if st.button("what?", key="btn_what"):
-                next_page()
+            pass
+
+        if st.button("what?", key="btn_what"):
+            next_page()
 
     # --- SLIDE 4: THE NEW BUFFER SLIDE (NERVOUS) ---
     elif st.session_state.page == 4:
@@ -179,8 +142,11 @@ with placeholder.container():
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            if st.button("It's okay, tell me...", key="btn_nervous"):
-                next_page()
+            pass
+        
+        st.write("")
+        if st.button("It's okay, tell me...", key="btn_nervous"):
+            next_page()
 
     # --- SLIDE 5: REALIZATION (Typing) ---
     elif st.session_state.page == 5:
@@ -207,18 +173,15 @@ with placeholder.container():
                 st.session_state.slide5_done = True
                 text_spot.markdown(f"### {displayed_text}")
                 
-                col1, col2, col3 = st.columns([1, 2, 1])
-                with col2:
-                    if st.button("Thinking what? 🤔", key="btn_thinking"):
-                        next_page()
+                st.write("") 
+                if st.button("Thinking what? 🤔", key="btn_thinking"):
+                    next_page()
         else:
             full_text = "\n\n".join(lines)
             st.markdown(f"### {full_text}")
-            
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                if st.button("Thinking what? 🤔", key="btn_thinking"):
-                    next_page()
+            st.write("") 
+            if st.button("Thinking what? 🤔", key="btn_thinking"):
+                next_page()
 
     # --- SLIDE 6: THE PLAN (Typing) ---
     elif st.session_state.page == 6:
@@ -251,18 +214,15 @@ with placeholder.container():
                 st.session_state.slide6_done = True
                 text_spot.markdown(f"### {displayed_text}")
                 
-                col1, col2, col3 = st.columns([1, 2, 1])
-                with col2:
-                    if st.button("Okay, I'm listening... 👀", key="btn_listening"):
-                        next_page()
+                st.write("") 
+                if st.button("Okay, I'm listening... 👀", key="btn_listening"):
+                    next_page()
         else:
             full_text = "\n\n".join(lines)
             st.markdown(f"### {full_text}")
-            
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                if st.button("Okay, I'm listening... 👀", key="btn_listening"):
-                    next_page()
+            st.write("") 
+            if st.button("Okay, I'm listening... 👀", key="btn_listening"):
+                next_page()
 
     # --- SLIDE 7: THE ASK ---
     elif st.session_state.page == 7:
@@ -284,8 +244,7 @@ with placeholder.container():
         elif st.session_state.no_count == 4:
             no_text = "okay :<<<<< ..."
         
-        # Add padding columns for better centering
-        col_pad1, col1, col2, col_pad2 = st.columns([0.5, 1, 1, 0.5])
+        col1, col2 = st.columns([1, 1])
         
         if st.session_state.no_count < 5:
             with col1:
@@ -296,10 +255,8 @@ with placeholder.container():
                     click_no()
         else:
             st.write("okay tama na sa pagiging over")
-            col1, col2, col3 = st.columns([1, 2, 1])
-            with col2:
-                if st.button("YES! (Okay fine 🙄) ", key="yes_forced"):
-                    next_page()
+            if st.button("YES! (Okay fine 🙄) ", key="yes_forced"):
+                next_page()
         
         st.markdown('</div>', unsafe_allow_html=True)
 
