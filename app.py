@@ -45,8 +45,7 @@ st.markdown("""
         padding: 15px 32px !important;
         font-size: 20px !important;
         box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
-        width: 100%;
-        transition: transform 0.3s ease, background-color 0.3s ease; 
+        transition: all 0.3s ease;
         animation: fadeIn 2s ease-in-out;
     }
     
@@ -66,21 +65,6 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    
-    /* Disable Streamlit's default fade transitions */
-    .element-container {
-        transition: none !important;
-    }
-    
-    .stButton {
-        transition: none !important;
-    }
-    
-    /* Disable animations for elements that shouldn't re-animate */
-    .no-animate h1, .no-animate h2, .no-animate h3, 
-    .no-animate p, .no-animate div, .no-animate span {
-        animation: none !important;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -119,9 +103,10 @@ with placeholder.container():
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
+            # st.image("nailong1.png", use_container_width=True)
             pass
             
-        if st.button("?", key="btn_hehe"):
+        if st.button("?", use_container_width=True):
             next_page()
 
     # --- SLIDE 3: OKAY SO ---
@@ -130,22 +115,24 @@ with placeholder.container():
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
+            # st.image("nailong2.png", use_container_width=True)
             pass
 
-        if st.button("what?", key="btn_what"):
+        if st.button("what?", use_container_width=True):
             next_page()
 
-    # --- SLIDE 4: THE NEW BUFFER SLIDE (NERVOUS) ---
+    # --- SLIDE 4: NERVOUS BUFFER ---
     elif st.session_state.page == 4:
         st.write("## Actually wait...")
         st.write("I'm kinda nervous to say this. 🙈")
         
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
+            # st.image("nailong1.png", use_container_width=True)
             pass
         
         st.write("")
-        if st.button("It's okay, tell me...", key="btn_nervous"):
+        if st.button("It's okay, tell me...", use_container_width=True):
             next_page()
 
     # --- SLIDE 5: REALIZATION (Typing) ---
@@ -156,32 +143,26 @@ with placeholder.container():
             "and I've been thinking..."
         ]
         
-        # CLEAR PLACEHOLDER FIRST before animation
+        text_spot = st.empty()
+        
         if 'slide5_done' not in st.session_state:
-            placeholder.empty()
-            time.sleep(0.1)  # Small delay to ensure clean slate
-            with placeholder.container():
-                text_spot = st.empty()
-                displayed_text = ""
-                for line in lines:
-                    for char in line:
-                        displayed_text += char
-                        text_spot.markdown(f"### {displayed_text}▌")
-                        time.sleep(0.05)
-                    displayed_text += "\n\n"
-                
-                st.session_state.slide5_done = True
-                text_spot.markdown(f"### {displayed_text}")
-                
-                st.write("") 
-                if st.button("Thinking what? 🤔", key="btn_thinking"):
-                    next_page()
+            displayed_text = ""
+            for line in lines:
+                for char in line:
+                    displayed_text += char
+                    text_spot.markdown(f"### {displayed_text}▌")
+                    time.sleep(0.05)
+                displayed_text += "\n\n"
+            
+            st.session_state.slide5_done = True
+            text_spot.markdown(f"### {displayed_text}")
         else:
             full_text = "\n\n".join(lines)
-            st.markdown(f"### {full_text}")
-            st.write("") 
-            if st.button("Thinking what? 🤔", key="btn_thinking"):
-                next_page()
+            text_spot.markdown(f"### {full_text}")
+        
+        st.write("") 
+        if st.button("Thinking what? 🤔", use_container_width=True):
+            next_page()
 
     # --- SLIDE 6: THE PLAN (Typing) ---
     elif st.session_state.page == 6:
@@ -196,41 +177,36 @@ with placeholder.container():
             "And... I have something I want to give you in person. 👉👈"
         ]
 
-        # CLEAR PLACEHOLDER FIRST before animation
+        text_spot = st.empty()
+        
         if 'slide6_done' not in st.session_state:
-            placeholder.empty()
-            time.sleep(0.1)  # Small delay to ensure clean slate
-            with placeholder.container():
-                text_spot = st.empty()
-                displayed_text = ""
-                for line in lines:
-                    for char in line:
-                        displayed_text += char
-                        text_spot.markdown(f"### {displayed_text}▌")
-                        time.sleep(0.04)
-                    displayed_text += "\n\n"
-                    time.sleep(0.3)
-                
-                st.session_state.slide6_done = True
-                text_spot.markdown(f"### {displayed_text}")
-                
-                st.write("") 
-                if st.button("Okay, I'm listening... 👀", key="btn_listening"):
-                    next_page()
+            displayed_text = ""
+            for line in lines:
+                for char in line:
+                    displayed_text += char
+                    text_spot.markdown(f"### {displayed_text}▌")
+                    time.sleep(0.04)
+                displayed_text += "\n\n"
+                time.sleep(0.3)
+            
+            st.session_state.slide6_done = True
+            text_spot.markdown(f"### {displayed_text}")
         else:
             full_text = "\n\n".join(lines)
-            st.markdown(f"### {full_text}")
-            st.write("") 
-            if st.button("Okay, I'm listening... 👀", key="btn_listening"):
-                next_page()
+            text_spot.markdown(f"### {full_text}")
+
+        # st.image("nailong2.png", use_container_width=True)
+
+        st.write("") 
+        if st.button("Okay, I'm listening... 👀", use_container_width=True):
+            next_page()
 
     # --- SLIDE 7: THE ASK ---
     elif st.session_state.page == 7:
-        # Always wrap in no-animate div to prevent re-animation on any rerun
-        st.markdown('<div class="no-animate">', unsafe_allow_html=True)
-        
         st.write("# So...")
         st.write("## Will you be my Valentine? 🌹")
+        
+        # st.image("nailong3.png")
         
         yes_text = "YES! 💖"
         no_text = "No"
@@ -248,23 +224,22 @@ with placeholder.container():
         
         if st.session_state.no_count < 5:
             with col1:
-                if st.button(yes_text, key="yes_btn"):
+                if st.button(yes_text, key="yes_btn", use_container_width=True):
                     next_page()
             with col2:
-                if st.button(no_text, key="no_btn"):
+                if st.button(no_text, key="no_btn", use_container_width=True):
                     click_no()
         else:
             st.write("okay tama na sa pagiging over")
-            if st.button("YES! (Okay fine 🙄) ", key="yes_forced"):
+            if st.button("YES! (Okay fine 🙄) ", use_container_width=True):
                 next_page()
-        
-        st.markdown('</div>', unsafe_allow_html=True)
 
     # --- SLIDE 8: SUCCESS ---
     elif st.session_state.page == 8:
         st.balloons()
         st.write("# YAY! See you Thursday! 🦖")
         
+        # st.image("nailong4.png")
+        
         st.write("I'll pick you up after your class. Don't be late! 😉")
         st.success("Date confirmed: Thursday, Feb 12")
-
